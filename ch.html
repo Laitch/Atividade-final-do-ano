@@ -6,7 +6,37 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</head>
+
+    <style>
+      body {
+          background-color: #f8f9fa;
+          padding: 20px 0;
+      }
+      .page-header {
+          text-align: center;
+          margin-bottom: 30px;
+          color: #2c3e50;
+      }
+      .card-container {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 20px;
+      }
+      .card {
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          transition: transform 0.3s;
+      }
+      .card:hover {
+          transform: translateY(-5px);
+      }
+      .card-img-top {
+          height: 180px;
+          object-fit: cover;
+      }
+  </style>
+
+  </head>
 <body>
     <nav aria-label="...">
         <ul class="pagination">
@@ -20,26 +50,39 @@
         </ul>
       </nav>
 
-    <div class="card" style="width: 18rem;">
-        <img src="../imagens/OIP (1).webp" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Aristóteles
-          </h5>
-          <p class="card-text">Aristóteles (384 a.C.-322 a.C.) foi um dos mais importantes filósofos gregos e o principal representante da terceira fase da história da filosofia grega “a fase sistemática”.
-           Escreveu uma série de obras que falavam sobre política, ética, moral e outro campos de conhecimento e foi professor de Alexandre, o Grande (356 a.C-323 a.C.)..</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-
-
-          <div class="card" style="width: 18rem;">
-          <img src="../imagens/OIP (1).webp" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Aristóteles
-            </h5>
-            <p class="card-text">Aristóteles (384 a.C.-322 a.C.) foi um dos mais importantes filósofos gregos e o principal representante da terceira fase da história da filosofia grega “a fase sistemática”.
-             Escreveu uma série de obras que falavam sobre política, ética, moral e outro campos de conhecimento e foi professor de Alexandre, o Grande (356 a.C-323 a.C.)..</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>  
-
-    
+      <div class="container mt-4">
+        <div class="row text-center">
+      
+          <div class="col-md-4 mb-4">
+            <div class="card mx-auto" style="width: 18rem;">
+              <img src="../imagens/ippo.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Povos tradicionais</h5>
+                <p class="card-text">
+                  Povos tradicionais são grupos culturalmente diferenciados que vivem em equilíbrio com o meio ambiente, utilizando seus recursos de forma sustentável para sua reprodução social, cultural e econômica. Eles possuem formas próprias de organização social e territorial, baseadas em conhecimentos e práticas transmitidos pela tradição, e se diferenciam da sociedade nacional. Exemplos incluem indígenas, quilombolas, caiçaras, ribeirinhos, pescadores artesanais, extrativistas e ciganos. 
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-md-4 mb-4">
+            <div class="card mx-auto" style="width: 18rem;">
+              <img src="../imagens/OIP (1).webp" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Aristóteles</h5>
+                <p class="card-text">
+                  Aristóteles (384 a.C.-322 a.C.) foi um dos mais importantes filósofos gregos e o principal representante da terceira fase da história da filosofia grega “a fase sistemática”.
+                  Escreveu uma série de obras que falavam sobre política, ética, moral e outros campos do conhecimento e foi professor de Alexandre, o Grande (356 a.C-323 a.C.).
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+       
 </body>
 </html>
+
