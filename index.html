@@ -8,6 +8,219 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
-    
-</body>
-</html>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+    </style>
+ 
+    <style>
+        :root {
+            --ti-color: #db1313;
+            --mat-color: #db1313;
+            --ch-color: #db1313;
+            --lgg-color: #db1313;
+            --cn-color: #db1313;
+        }
+       
+        .profile-section {
+            background: linear-gradient(135deg, #bd1515 0%, #db1313 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(231, 0, 0, 0.904);
+        }
+       
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 5px 15px rgba(231, 0, 0, 0.904);
+        }
+       
+        .area-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid;
+            height: 100%;
+            border-radius: 10px;
+        }
+       
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(231, 0, 0, 0.904) !important;
+        }
+       
+        .ti-card {
+            border-left-color: var(--ti-color);
+        }
+       
+        .mat-card {
+            border-left-color: var(--mat-color);
+        }
+       
+        .ch-card {
+            border-left-color: var(--ch-color);
+        }
+       
+        .lgg-card {
+            border-left-color: var(--lgg-color);
+        }
+       
+        .cn-card {
+            border-left-color: var(--cn-color);
+        }
+       
+        .area-header {
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+       
+        .year-section {
+            margin-bottom: 20px;
+        }
+       
+        .year-badge {
+            font-size: 0.9rem;
+        }
+       
+        .topic-item {
+            padding: 8px 0;
+            border-bottom: 1px dashed #dee2e6;
+        }
+       
+        .topic-item:last-child {
+            border-bottom: none;
+        }
+       
+        .bg-purple {
+            background-color: var(--lgg-color) !important;
+        }
+       
+        .nav-tabs .nav-link.active {
+            font-weight: bold;
+        }
+       
+        .subject-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <!-- Seção de Perfil -->
+        <div class="profile-section">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center">
+                    <img src="imagens/Mídia (1).jpg"
+                         alt="Foto do estudante" class="profile-pic mb-3">
+                </div>
+                <div class="col-md-9">
+                    <h1 class="display-5 fw-bold">Luizinho Gameplays</h1>
+                    <p class="lead mb-3">Estudante do Ensino Médio</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <i class="bi bi-book me-2"></i>
+                                <strong>Ano Letivo:</strong> 2025
+                            </div>
+                            <div class="mb-2">
+                                <i class="bi bi-building me-2"></i>
+                                <strong>Escola:</strong> Senac Nações Unidas
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-2">
+                                <i class="bi bi-calendar-event me-2"></i>
+                                <strong>Período:</strong> Vespertino
+                            </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+
+    <div class="row">
+        <div class="col-sm-4 mb-1 mb-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ciências da Natureza</h5>
+              <p class="card-text">Aqui estão alguns conteúdos do 2 e 3 ano do ensino médio que eu mais gostei em Ciências da Natureza.</p>
+              <a href="paginas/ch.html" class="btn btn-primary">Venha descobrir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Ciencias Humanas</h5>
+                <p class="card-text">Aqui estão alguns conteúdos do 2 e 3 ano do ensino médio que eu mais gostei em Ciências Humanas.</p>
+                <a href="paginas/ch.html" class="btn btn-primary">Venha descobrir</a>
+              </div>
+            </div>
+        </div>
+ 
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Matemática</h5>
+                <p class="card-text">Aqui estão alguns conteúdos do 2 e 3 ano do ensino médio que eu mais gostei em Matemática.</p>
+                <a href="paginas/mat.html" class="btn btn-primary">Venha descobrir</a>
+              </div>
+            </div>
+        </div>
+ 
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">TI</h5>
+                <p class="card-text">Aqui estão alguns conteúdos do 2 e 3 ano do ensino médio que eu mais gostei em TI.</p>
+                <a href="paginas/ti.html" class="btn btn-primary">Venha ver!</a>
+              </div>
+            </div>
+        </div>
+
+ 
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Linguagens</h5>
+                <p class="card-text">Aqui estão alguns conteúdos do 2 e 3 ano do ensino médio que eu mais gostei em linguagens.</p>
+                <a href="../Atividade Final/Paginas/lgg.html" class="btn btn-primary">Venha ver!</a>
+              </div>
+            </div>
+        </div>
+
+
+ 
