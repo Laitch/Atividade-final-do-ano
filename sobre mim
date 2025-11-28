@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Profissional - Luiz Henrique Barbosa Fernandes dos Santos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #5d00a8;
+            --primary-dark: #8032b4;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+       
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+       
+        .container {
+            max-width: 1000px;
+            margin-top: 30px;
+        }
+       
+        /* Navbar aprimorada */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 1rem 0;
+        }
+       
+        .nav-brand {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+       
+        .dropdown-toggle {
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+       
+        .dropdown-toggle:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 10, 20, 0.3);
+        }
+       
+        /* Seção de perfil aprimorada */
+        .profile-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+       
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 50, 50, 0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+       
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Alterado para formato circular */
+            object-fit: cover;
+            border: 4px solid rgba(253, 59, 59, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+       
+        .profile-pic:hover {
+            transform: scale(1.03);
+        }
+       
+        .profile-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+       
+        .profile-subtitle {
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+       
+        /* Seção de descrição aprimorada */
+        .description {
+            background-color: rgb(255, 255, 255);
+            color: var(--text-dark);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+       
+        .description h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+       
+        .description h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+       
+        .description p {
+            margin-bottom: 1.25rem;
+            color: var(--text-light);
+        }
+       
+        .description p:last-child {
+            margin-bottom: 0;
+        }
+       
+        /* Efeitos de destaque */
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+       
+        /* Estilo para a mensagem de atualização */
+        .update-notice {
+            background-color: #f0f9ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+       
+        .update-notice i {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+       
+        .update-date {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+       
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .profile-section {
+                padding: 2rem 1.5rem;
+                text-align: center;
+            }
+           
+            .profile-pic {
+                width: 160px;
+                height: 160px;
+                margin-bottom: 1.5rem;
+            }
+           
+            .description {
+                padding: 2rem 1.5rem;
+            }
+           
+            .update-notice {
+                padding: 0.75rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegação Aprimorada -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand nav-brand" >
+                Portfólio Profissional
+            </a>
+ 
+            <!-- Dropdown centralizado -->
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Navegação
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="../páginas/tendencias.html"><i class="bi bi-graph-up me-2"></i>Tendências Tecnológicas</a></li>
+                    <li><a class="dropdown-item" href="../páginas/projetos.html"><i class="bi bi-folder me-2"></i>Projetos</a></li>
+                    <li><a class="dropdown-item" href="../páginas/softskills.html"><i class="bi bi-star me-2"></i>Habilidades</a></li>
+                    <li><a class="dropdown-item" href="../index.html"><i class="bi bi-book me-2"></i>Páginas incial</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="http://localhost/atividade%20final/p%C3%A1ginas/formulario.html"><i class="bi bi-envelope me-2"></i>Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+ 
+    <div class="container py-4">
+        <!-- Seção de Perfil Aprimorada -->
+        <div class="profile-section">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start">
+                    <img src="../imagens/Perfil Luiz(1).jpg" alt="Foto de Pablo Gonçalves Santos" class="profile-pic">
+                </div>
+                <div class="col-md-8 mt-4 mt-md-0">
+                    <h1 class="profile-title">Luiz Henrique Barbosa Fernandes dos Santos</h1>
+                    <p class="profile-subtitle">Especializando em Tecnologia da Informação</p>
+                   
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="badge bg-light text-dark p-2"><i class="bi bi-award me-1"></i> 2 Anos de Experiência</span>
+                        <span class="badge bg-light text-dark p-2"><i class="bi bi-geo-alt me-1"></i> São Paulo, Brasil</span>
+                        <span class="badge bg-light text-dark p-2"><i class="bi bi-briefcase me-1"></i> Disponibilidade para projetos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- Seção de Descrição Aprimorada -->
+        <div class="description">
+            <h3>Minha Descrição</h3>
+            <p>Estou concluindo o último ano do ensino médio técnico em <span class="highlight">Tecnologia da Informação</span> no <span class="highlight">Senac Nações Unidas</span>. Durante esses 2 anos de formação, mergulhei no universo da tecnologia, desenvolvendo uma base consistente em <span class="highlight">programação</span> (Java, Python, desenvolvimento de jogos e sites) e também em <span class="highlight">redes</span>, estudando conceitos como Cisco, modelo OSI, topologias, LAN e WAN.</p>
+            
+            <p>Ao longo do curso, aprendi a utilizar ferramentas essenciais como <span class="highlight">Excel, Word, PowerPoint e Visio</span>, além de fortalecer minhas habilidades em <span class="highlight">documentação técnica</span>, <span class="highlight">banco de dados</span> e no entendimento de <span class="highlight">componentes físicos e de software</span> dos computadores. Também tive experiências práticas montando e desmontando máquinas, compreendendo como cada peça contribui para o funcionamento completo do sistema.</p>
+            
+            <p>Sou uma pessoa curiosa e em constante evolução, sempre buscando aprender mais — seja na área técnica ou no meu <span class="highlight">desenvolvimento pessoal</span>. Tenho grande interesse em <span class="highlight">programação</span> e, no meu tempo livre, gosto de <span class="highlight">ler</span>, <span class="highlight">desenhar</span> e explorar novas ideias relacionadas à tecnologia. Procuro equilibrar meus estudos com momentos de lazer e bem-estar no dia a dia.</p>
+            
+            <p>Na aba de <span class="highlight">habilidades</span>, você encontrará mais detalhes sobre as competências que desenvolvi ao longo dessa jornada. Estou sempre aberto a novos desafios e oportunidades para aplicar meus conhecimentos e continuar evoluindo como profissional.</p>
+            
+            <!-- Mensagem de atualização adicionada -->
+            <div class="update-notice">
+                <i class="bi bi-info-circle"></i>
+                <div>
+                    <span class="update-date">Atualizado em 28/11/2025</span> - Minhas habilidades atuais na área.
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        // Adiciona um efeito sutil de fade-in ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.profile-section, .description');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+           
+            setTimeout(() => {
+                elements.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 200);
+        });
+    </script>
+</body>
+</html>
+ 
