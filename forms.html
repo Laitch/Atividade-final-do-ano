@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Portfólio Luiz Henrique</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #5d00a8;
+            --primary-dark: #8032b4;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --valid-color: #10b981;
+            --invalid-color: #dc2626;
+            --localhost-color: #0ea5e9;
+        }
+       
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+       
+        .container {
+            max-width: 1000px;
+            margin-top: 30px;
+        }
+       
+        /* Navbar aprimorada */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 1rem 0;
+        }
+       
+        .nav-brand {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+       
+        .dropdown-toggle {
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+       
+        .dropdown-toggle:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 10, 20, 0.3);
+        }
+       
+        /* Botão Localhost */
+        .btn-localhost {
+            background-color: var(--localhost-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+       
+        .btn-localhost:hover {
+            background-color: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+            color: white;
+        }
+       
+        /* Seção de formulário */
+        .form-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+       
+        .section-header {
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+       
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+       
+        .form-label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+       
+        .form-control, .form-select {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+       
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(93, 0, 168, 0.1);
+        }
+       
+        /* Estados de validação para todos os campos */
+        .field-valid {
+            border-color: var(--valid-color) !important;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+        }
+       
+        .field-invalid {
+            border-color: var(--invalid-color) !important;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+        }
+       
+        /* Ícone de validação para todos os campos */
+        .validation-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+       
+        .validation-icon.valid {
+            color: var(--valid-color);
+            opacity: 1;
+        }
+       
+        .validation-icon.invalid {
+            color: var(--invalid-color);
+            opacity: 1;
+        }
+       
+        .required {
+            color: #dc2626;
+        }
+       
+        /* Contador de caracteres */
+        .char-counter {
+            font-size: 0.875rem;
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+       
+        .char-counter.warning {
+            color: #f59e0b;
+        }
+       
+        .char-counter.danger {
+            color: var(--invalid-color);
+            font-weight: 500;
+        }
+       
+        /* Card de informações */
+        .info-card {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 10px 25px rgba(93, 0, 168, 0.2);
+        }
+       
+        .info-card h4 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+       
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+        }
+       
+        .info-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+       
+        /* Botão de envio */
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+       
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(93, 0, 168, 0.3);
+        }
+       
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+       
+        /* Modal de confirmação */
+        .confirmation-modal .modal-content {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+       
+        .confirmation-icon {
+            font-size: 4rem;
+            color: var(--success-color);
+            margin-bottom: 1.5rem;
+        }
+       
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 2rem 1.5rem;
+            }
+           
+            .info-card {
+                margin-top: 2rem;
+            }
+           
+            .nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+           
+            .btn-localhost {
+                margin-left: 0;
+            }
+        }
+       
+        /* Animações */
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+       
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+       
+        /* Posicionamento relativo para os ícones de validação */
+        .input-wrapper {
+            position: relative;
+        }
+       
+        /* Feedback visual */
+        .valid-feedback, .invalid-feedback {
+            display: none;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+       
+        .valid-feedback {
+            color: var(--valid-color);
+        }
+       
+        .invalid-feedback {
+            color: var(--invalid-color);
+        }
+       
+        .valid-feedback.show,
+        .invalid-feedback.show {
+            display: block;
+        }
+       
+        /* Container dos botões de navegação */
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand nav-brand" href="../index.html">
+                Portfólio Profissional
+            </a>
+ 
+            <!-- Botões de Navegação -->
+            <div class="nav-buttons">
+                <!-- Dropdown centralizado -->
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Navegação
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="../páginas/tendencias.html"><i class="bi bi-graph-up me-2"></i>Tendências Tecnológicas</a></li>
+                        <li><a class="dropdown-item" href="../páginas/projetos.html"><i class="bi bi-folder me-2"></i>Projetos</a></li>
+                        <li><a class="dropdown-item" href="../páginas/softskills.html"><i class="bi bi-star me-2"></i>Habilidades</a></li>
+                        <li><a class="dropdown-item" href="../index.html"><i class="bi bi-book me-2"></i>Página Inicial</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-envelope me-2"></i>Contato</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Botão Habilitar Localhost -->
+                <a href="http://localhost/INSIRA O LINK DO SEU ARQUIVO AQUI DEPOIS DA BARRA" class="btn btn-localhost" id="localhostBtn" target="_blank">
+                    <i class="bi bi-database me-2"></i>Habilitar Localhost
+                </a>
+            </div>
+        </div>
+    </nav>
+ 
+    <div class="container py-4">
+        <!-- Cabeçalho da página -->
+        <div class="row mb-4 fade-in">
+            <div class="col-12">
+                <h1 class="section-header">Entre em Contato</h1>
+                <p class="text-muted">Preencha o formulário abaixo para discutir projetos, parcerias ou qualquer assunto relacionado à tecnologia. Estou ansioso para colaborar com você!</p>
+            </div>
+        </div>
+ 
+        <div class="row fade-in">
+            <!-- Formulário -->
+            <div class="col-lg-8 mb-4">
+                <div class="form-section">
+                    <form id="contactForm">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Nome Completo <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <input type="text" class="form-control" id="name" placeholder="Digite seu nome completo" required maxlength="100">
+                                    <span class="validation-icon" id="nameValidationIcon">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" id="nameInvalidFeedback">
+                                    Por favor, informe seu nome (mínimo 3 caracteres).
+                                </div>
+                                <div class="valid-feedback" id="nameValidFeedback">
+                                    Nome válido!
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">E-mail <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <input type="email" class="form-control" id="email" placeholder="seu.email@exemplo.com" required maxlength="150">
+                                    <span class="validation-icon" id="emailValidationIcon">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" id="emailInvalidFeedback">
+                                    Por favor, informe um e-mail válido com domínio (ex: @gmail.com, @outlook.com).
+                                </div>
+                                <div class="valid-feedback" id="emailValidFeedback">
+                                    E-mail válido!
+                                </div>
+                                <div class="form-text mt-1">
+                                    <small>Domínios aceitos: @gmail.com, @outlook.com, @hotmail.com, @yahoo.com, etc.</small>
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Telefone <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <input type="tel" class="form-control" id="phone" placeholder="(11) 99999-9999" required>
+                                    <span class="validation-icon" id="phoneValidationIcon">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback" id="phoneInvalidFeedback">
+                                    Por favor, informe um telefone válido brasileiro com DDD (ex: (11) 99999-9999).
+                                </div>
+                                <div class="valid-feedback" id="phoneValidFeedback">
+                                    Telefone válido!
+                                </div>
+                                <div class="form-text mt-1">
+                                    <small>Formato brasileiro: (DDD) 9XXXX-XXXX para celular, (DDD) XXXX-XXXX para fixo</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="subject" class="form-label">Assunto <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <input type="text" class="form-control" id="subject" placeholder="Ex: Proposta de Desenvolvimento Web" required maxlength="120">
+                                    <span class="validation-icon" id="subjectValidationIcon">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="char-counter" id="subjectCounter">0/120 caracteres</div>
+                                <div class="invalid-feedback" id="subjectInvalidFeedback">
+                                    O assunto deve ter pelo menos 5 caracteres.
+                                </div>
+                                <div class="valid-feedback" id="subjectValidFeedback">
+                                    Assunto válido!
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <div class="mb-4">
+                            <label for="projectType" class="form-label">Tipo de Projeto (Opcional)</label>
+                            <div class="input-wrapper">
+                                <input type="text" class="form-control" id="projectType" placeholder="Ex: Desenvolvimento de Site Institucional" maxlength="100">
+                                <span class="validation-icon" id="projectTypeValidationIcon">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </span>
+                            </div>
+                            <div class="char-counter" id="projectTypeCounter">0/100 caracteres</div>
+                            <div class="valid-feedback" id="projectTypeValidFeedback">
+                                Campo preenchido!
+                            </div>
+                        </div>
+ 
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Mensagem <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <textarea class="form-control" id="message" rows="6" placeholder="Descreva detalhadamente sua proposta, ideia ou dúvida..." required maxlength="2000"></textarea>
+                                <span class="validation-icon" id="messageValidationIcon">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </span>
+                            </div>
+                            <div class="char-counter" id="messageCounter">0/2000 caracteres</div>
+                            <div class="invalid-feedback" id="messageInvalidFeedback">
+                                A mensagem deve ter pelo menos 20 caracteres.
+                            </div>
+                            <div class="valid-feedback" id="messageValidFeedback">
+                                Mensagem válida!
+                            </div>
+                            <div class="form-text mt-2">
+                                <i class="bi bi-lightbulb me-1"></i>
+                                Inclua detalhes como: orçamento estimado, prazo, tecnologias de interesse e objetivos do projeto.
+                            </div>
+                        </div>
+ 
+                        <button type="submit" class="btn-submit" id="submitButton">
+                            <i class="bi bi-send me-2"></i> Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+ 
+            <!-- Informações de Contato -->
+            <div class="col-lg-4 mb-4">
+                <div class="info-card">
+                    <h4><i class="bi bi-info-circle me-2"></i> Informações de Contato</h4>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Luiz Henrique</h6>
+                            <p class="small mb-0 opacity-75">Desenvolvedor & Especialista em TI</p>
+                        </div>
+                    </div>
+ 
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">E-mail</h6>
+                            <p class="small mb-0 opacity-75">contato@luizportfolio.com</p>
+                        </div>
+                    </div>
+ 
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Localização</h6>
+                            <p class="small mb-0 opacity-75">São Paulo, Brasil</p>
+                        </div>
+                    </div>
+ 
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Tempo de Resposta</h6>
+                            <p class="small mb-0 opacity-75">24-48 horas úteis</p>
+                        </div>
+                    </div>
+ 
+                    <hr class="my-4 opacity-25">
+ 
+                    <div class="mt-4">
+                        <h6 class="mb-3">Áreas de Especialização:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark">Programação</span>
+                            <span class="badge bg-light text-dark">Redes de Computadores</span>
+                            <span class="badge bg-light text-dark">Desenvolvimento Web</span>
+                            <span class="badge bg-light text-dark">Banco de Dados</span>
+                            <span class="badge bg-light text-dark">Infraestrutura TI</span>
+                        </div>
+                    </div>
+ 
+                    <div class="mt-4">
+                        <p class="small opacity-75">
+                            <i class="bi bi-lightbulb me-1"></i>
+                            Para projetos complexos, sugiro agendar uma reunião inicial para alinharmos expectativas e escopo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Modal de Confirmação -->
+    <div class="modal fade confirmation-modal" id="confirmationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center py-5">
+                    <div class="confirmation-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <h4 class="mb-3">Mensagem Enviada!</h4>
+                    <p class="text-muted mb-4">
+                        Sua mensagem foi enviada com sucesso. Entrarei em contato em breve através do e-mail ou telefone informado.
+                    </p>
+                    <div class="alert alert-info mb-4">
+                        <small>
+                            <i class="bi bi-info-circle me-1"></i>
+                            <strong>Próximos passos:</strong> Vou analisar sua proposta e retornar com uma resposta personalizada.
+                        </small>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        <i class="bi bi-house me-2"></i> Voltar ao Portfólio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            const submitButton = document.getElementById('submitButton');
+            
+            // Elementos para validação
+            const nameInput = document.getElementById('name');
+            const nameValidationIcon = document.getElementById('nameValidationIcon');
+            const nameValidFeedback = document.getElementById('nameValidFeedback');
+            const nameInvalidFeedback = document.getElementById('nameInvalidFeedback');
+            
+            const emailInput = document.getElementById('email');
+            const emailValidationIcon = document.getElementById('emailValidationIcon');
+            const emailValidFeedback = document.getElementById('emailValidFeedback');
+            const emailInvalidFeedback = document.getElementById('emailInvalidFeedback');
+            
+            const phoneInput = document.getElementById('phone');
+            const phoneValidationIcon = document.getElementById('phoneValidationIcon');
+            const phoneValidFeedback = document.getElementById('phoneValidFeedback');
+            const phoneInvalidFeedback = document.getElementById('phoneInvalidFeedback');
+            
+            const subjectInput = document.getElementById('subject');
+            const subjectValidationIcon = document.getElementById('subjectValidationIcon');
+            const subjectValidFeedback = document.getElementById('subjectValidFeedback');
+            const subjectInvalidFeedback = document.getElementById('subjectInvalidFeedback');
+            
+            const projectTypeInput = document.getElementById('projectType');
+            const projectTypeValidationIcon = document.getElementById('projectTypeValidationIcon');
+            const projectTypeValidFeedback = document.getElementById('projectTypeValidFeedback');
+            
+            const messageInput = document.getElementById('message');
+            const messageValidationIcon = document.getElementById('messageValidationIcon');
+            const messageValidFeedback = document.getElementById('messageValidFeedback');
+            const messageInvalidFeedback = document.getElementById('messageInvalidFeedback');
+            
+            // Elementos para contador de caracteres
+            const subjectCounter = document.getElementById('subjectCounter');
+            const projectTypeCounter = document.getElementById('projectTypeCounter');
+            const messageCounter = document.getElementById('messageCounter');
+            
+            // Domínios de e-mail válidos
+            const validEmailDomains = [
+                'gmail.com', 'outlook.com', 'hotmail.com',
+                'yahoo.com', 'yahoo.com.br', 'icloud.com',
+                'protonmail.com', 'live.com', 'bol.com.br',
+                'uol.com.br', 'terra.com.br', 'globo.com',
+                'zipmail.com.br', 'ig.com.br', 'r7.com',
+                'oi.com.br', 'pop.com.br', 'folha.com.br',
+                'unb.br', 'usp.br', 'edu.br'
+            ];
+            
+            // Função para validar formato de e-mail
+            function validateEmailFormat(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Função para validar domínio de e-mail
+            function validateEmailDomain(email) {
+                if (!email.includes('@')) return false;
+                const domain = email.split('@')[1].toLowerCase();
+                return validEmailDomains.some(validDomain => 
+                    domain === validDomain || domain.endsWith('.' + validDomain)
+                );
+            }
+            
+            // Função para validar e-mail completo
+            function validateEmail(email) {
+                if (!email.trim()) return null;
+                const isValidFormat = validateEmailFormat(email);
+                if (!isValidFormat) return false;
+                const isValidDomain = validateEmailDomain(email);
+                return isValidDomain;
+            }
+            
+            // Função para validar telefone BRASILEIRO
+            function validatePhoneBR(phone) {
+                // Remove todos os não dígitos
+                const cleaned = phone.replace(/\D/g, '');
+                
+                // Telefone fixo: 10 dígitos (DDD + 8 dígitos)
+                // Telefone celular: 11 dígitos (DDD + 9 + 8 dígitos)
+                if (cleaned.length === 10 || cleaned.length === 11) {
+                    // Verifica se começa com DDD válido (11-99)
+                    const ddd = cleaned.substring(0, 2);
+                    if (ddd >= 11 && ddd <= 99) {
+                        // Para celular (11 dígitos), o 3º dígito deve ser 9
+                        if (cleaned.length === 11) {
+                            return cleaned.charAt(2) === '9';
+                        }
+                        // Para fixo (10 dígitos)
+                        return true;
+                    }
+                }
+                return false;
+            }
+            
+            // Função para validar nome
+            function validateName(name) {
+                return name.trim().length >= 3;
+            }
+            
+            // Função para validar assunto
+            function validateSubject(subject) {
+                return subject.trim().length >= 5;
+            }
+            
+            // Função para validar mensagem
+            function validateMessage(message) {
+                return message.trim().length >= 20;
+            }
+            
+            // Máscara de telefone brasileira
+            function applyPhoneMaskBR(value) {
+                let cleaned = value.replace(/\D/g, '');
+                
+                if (cleaned.length > 0) {
+                    // Aplica máscara baseada no comprimento
+                    if (cleaned.length <= 10) {
+                        // Telefone fixo: (XX) XXXX-XXXX
+                        cleaned = cleaned.replace(/^(\d{2})(\d)/, '($1) $2');
+                        if (cleaned.length > 9) {
+                            cleaned = cleaned.replace(/(\d{4})(\d)/, '$1-$2');
+                        }
+                    } else {
+                        // Telefone celular: (XX) 9XXXX-XXXX
+                        cleaned = cleaned.replace(/^(\d{2})(\d)/, '($1) $2');
+                        if (cleaned.length > 10) {
+                            cleaned = cleaned.replace(/(\d{5})(\d)/, '$1-$2');
+                        }
+                    }
+                }
+                
+                // Limita o comprimento máximo
+                return cleaned.substring(0, 15);
+            }
+            
+            // Função para atualizar validação visual de um campo
+            function updateFieldValidation(input, validationIcon, isValid, validFeedback, invalidFeedback, isOptional = false) {
+                // Remove classes anteriores
+                input.classList.remove('field-valid', 'field-invalid');
+                validationIcon.classList.remove('valid', 'invalid');
+                
+                if (validFeedback) validFeedback.classList.remove('show');
+                if (invalidFeedback) invalidFeedback.classList.remove('show');
+                
+                // Se campo vazio e opcional, não mostra validação
+                if (isOptional && input.value.trim() === '') {
+                    return;
+                }
+                
+                if (input.value.trim() === '') {
+                    // Campo vazio
+                    return;
+                }
+                
+                if (isValid) {
+                    // Campo válido
+                    input.classList.add('field-valid');
+                    validationIcon.classList.add('valid');
+                    if (validFeedback) validFeedback.classList.add('show');
+                } else {
+                    // Campo inválido
+                    input.classList.add('field-invalid');
+                    validationIcon.classList.add('invalid');
+                    if (invalidFeedback) invalidFeedback.classList.add('show');
+                }
+            }
+            
+            // Validação de NOME em tempo real
+            nameInput.addEventListener('input', function() {
+                const isValid = validateName(this.value);
+                updateFieldValidation(this, nameValidationIcon, isValid, nameValidFeedback, nameInvalidFeedback);
+                updateSubmitButton();
+            });
+            
+            // Validação de E-MAIL em tempo real
+            emailInput.addEventListener('input', function() {
+                const email = this.value.trim();
+                const isValid = validateEmail(email);
+                updateFieldValidation(this, emailValidationIcon, isValid, emailValidFeedback, emailInvalidFeedback);
+                updateSubmitButton();
+            });
+            
+            // Máscara e validação de TELEFONE BRASILEIRO
+            phoneInput.addEventListener('input', function(e) {
+                // Aplica a máscara brasileira
+                e.target.value = applyPhoneMaskBR(e.target.value);
+                
+                // Validação
+                const isValid = validatePhoneBR(e.target.value);
+                updateFieldValidation(this, phoneValidationIcon, isValid, phoneValidFeedback, phoneInvalidFeedback);
+                updateSubmitButton();
+            });
+            
+            // Validação de TELEFONE ao sair do campo
+            phoneInput.addEventListener('blur', function() {
+                const isValid = validatePhoneBR(this.value);
+                updateFieldValidation(this, phoneValidationIcon, isValid, phoneValidFeedback, phoneInvalidFeedback);
+                updateSubmitButton();
+            });
+            
+            // Validação de ASSUNTO em tempo real
+            subjectInput.addEventListener('input', function() {
+                const length = this.value.length;
+                const maxLength = parseInt(this.getAttribute('maxlength'));
+                updateCharCounter(subjectCounter, length, maxLength);
+                
+                const isValid = validateSubject(this.value);
+                updateFieldValidation(this, subjectValidationIcon, isValid, subjectValidFeedback, subjectInvalidFeedback);
+                updateSubmitButton();
+            });
+            
+            // Validação de TIPO DE PROJETO (opcional)
+            projectTypeInput.addEventListener('input', function() {
+                const length = this.value.length;
+                const maxLength = parseInt(this.getAttribute('maxlength'));
+                updateCharCounter(projectTypeCounter, length, maxLength);
+                
+                // Para campo opcional, só valida se não estiver vazio
+                const isValid = this.value.trim().length > 0;
+                updateFieldValidation(this, projectTypeValidationIcon, isValid, projectTypeValidFeedback, null, true);
+            });
+            
+            // Validação de MENSAGEM em tempo real
+            messageInput.addEventListener('input', function() {
+                const length = this.value.length;
+                const maxLength = parseInt(this.getAttribute('maxlength'));
+                updateCharCounter(messageCounter, length, maxLength);
+                
+                const isValid = validateMessage(this.value);
+                updateFieldValidation(this, messageValidationIcon, isValid, messageValidFeedback, messageInvalidFeedback);
+                updateSubmitButton();
+            });
+            
+            // Função para atualizar contador de caracteres
+            function updateCharCounter(counterElement, currentLength, maxLength) {
+                counterElement.textContent = `${currentLength}/${maxLength} caracteres`;
+                counterElement.classList.remove('warning', 'danger');
+                
+                const percentage = (currentLength / maxLength) * 100;
+                if (percentage >= 90) {
+                    counterElement.classList.add('danger');
+                } else if (percentage >= 75) {
+                    counterElement.classList.add('warning');
+                }
+            }
+            
+            // Função para atualizar estado do botão de envio
+            function updateSubmitButton() {
+                const isNameValid = validateName(nameInput.value);
+                const isEmailValid = validateEmail(emailInput.value) === true;
+                const isPhoneValid = validatePhoneBR(phoneInput.value);
+                const isSubjectValid = validateSubject(subjectInput.value);
+                const isMessageValid = validateMessage(messageInput.value);
+                
+                submitButton.disabled = !(isNameValid && isEmailValid && isPhoneValid && isSubjectValid && isMessageValid);
+            }
+            
+            // Inicializa os contadores
+            updateCharCounter(subjectCounter, subjectInput.value.length, 120);
+            updateCharCounter(projectTypeCounter, projectTypeInput.value.length, 100);
+            updateCharCounter(messageCounter, messageInput.value.length, 2000);
+            updateSubmitButton();
+            
+            // Validação e envio do formulário
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Valida todos os campos
+                const isNameValid = validateName(nameInput.value);
+                const isEmailValid = validateEmail(emailInput.value) === true;
+                const isPhoneValid = validatePhoneBR(phoneInput.value);
+                const isSubjectValid = validateSubject(subjectInput.value);
+                const isMessageValid = validateMessage(messageInput.value);
+                
+                // Atualiza visualmente todos os campos
+                updateFieldValidation(nameInput, nameValidationIcon, isNameValid, nameValidFeedback, nameInvalidFeedback);
+                updateFieldValidation(emailInput, emailValidationIcon, isEmailValid, emailValidFeedback, emailInvalidFeedback);
+                updateFieldValidation(phoneInput, phoneValidationIcon, isPhoneValid, phoneValidFeedback, phoneInvalidFeedback);
+                updateFieldValidation(subjectInput, subjectValidationIcon, isSubjectValid, subjectValidFeedback, subjectInvalidFeedback);
+                updateFieldValidation(messageInput, messageValidationIcon, isMessageValid, messageValidFeedback, messageInvalidFeedback);
+                
+                const isValid = isNameValid && isEmailValid && isPhoneValid && isSubjectValid && isMessageValid;
+                
+                if (!isValid) {
+                    e.stopPropagation();
+                    form.classList.add('was-validated');
+                    return;
+                }
+                
+                // Desabilita o botão durante o "envio"
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="bi bi-hourglass-split me-2"></i> Enviando...';
+                
+                // Simula o envio
+                setTimeout(() => {
+                    // Coletando dados
+                    const formData = {
+                        name: nameInput.value,
+                        email: emailInput.value,
+                        phone: phoneInput.value,
+                        subject: subjectInput.value,
+                        projectType: projectTypeInput.value,
+                        message: messageInput.value,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    console.log('📧 Dados do formulário enviado:', formData);
+                    console.log('✅ Telefone validado:', phoneInput.value);
+                    
+                    // Mostrar modal de confirmação
+                    confirmationModal.show();
+                    
+                    // Restaura o botão
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="bi bi-send me-2"></i> Enviar Mensagem';
+                    
+                    // Resetar formulário após mostrar o modal
+                    setTimeout(() => {
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        
+                        // Remove todas as classes de validação
+                        const allInputs = [nameInput, emailInput, phoneInput, subjectInput, projectTypeInput, messageInput];
+                        const allIcons = [nameValidationIcon, emailValidationIcon, phoneValidationIcon, subjectValidationIcon, projectTypeValidationIcon, messageValidationIcon];
+                        const allValidFeedbacks = [nameValidFeedback, emailValidFeedback, phoneValidFeedback, subjectValidFeedback, projectTypeValidFeedback, messageValidFeedback];
+                        const allInvalidFeedbacks = [nameInvalidFeedback, emailInvalidFeedback, phoneInvalidFeedback, subjectInvalidFeedback, null, messageInvalidFeedback];
+                        
+                        allInputs.forEach(input => {
+                            input.classList.remove('field-valid', 'field-invalid');
+                        });
+                        
+                        allIcons.forEach(icon => {
+                            icon.classList.remove('valid', 'invalid');
+                        });
+                        
+                        allValidFeedbacks.forEach(feedback => {
+                            if (feedback) feedback.classList.remove('show');
+                        });
+                        
+                        allInvalidFeedbacks.forEach(feedback => {
+                            if (feedback) feedback.classList.remove('show');
+                        });
+                        
+                        // Reseta os contadores
+                        updateCharCounter(subjectCounter, 0, 120);
+                        updateCharCounter(projectTypeCounter, 0, 100);
+                        updateCharCounter(messageCounter, 0, 2000);
+                        updateSubmitButton();
+                    }, 500);
+                }, 1500);
+            });
+ 
+            // Efeito de fade-in
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
